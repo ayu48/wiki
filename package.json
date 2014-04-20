@@ -1,0 +1,20 @@
+{
+  "name": "ayu-blue-blog",
+  "version": "0.0.0",
+  "description": "personal-blog",
+  "main": "web.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "author": "ayu",
+  "license": "BSD",
+  "dependencies": {
+    "logfmt": "~1.1.2",
+    "express": "~4.0.0"
+  },
+  "engines": {
+      "node": "0.10.x"
+
+  }
+}
