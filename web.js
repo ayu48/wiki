@@ -1,13 +1,15 @@
 // Module dependencies
-var express = require("express");
-var logfmt = require("logfmt");
+var express = require("express")
+    , logfmt = require("logfmt")
+    , path = require('path');
+
 var app = express();
-var site = require('./site');
 
 // Config
-app.set('views', __dirname + '/src/views');
+app.set('views', __dirname + '/views');
 app.set('view engine', 'hbs');
 app.use(logfmt.requestLogger());
+app.use(express.static(path.join(__dirname, 'public')));
 
 // General
 app.get('/', function(req, res) {
