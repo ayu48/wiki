@@ -1,7 +1,8 @@
 // Module dependencies
 var express = require("express")
     , logfmt = require("logfmt")
-    , path = require('path');
+    , path = require('path')
+    , hbs = require('hbs');
 
 var app = express();
 
@@ -10,6 +11,7 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'hbs');
 app.use(logfmt.requestLogger());
 app.use(express.static(path.join(__dirname, 'public')));
+hbs.registerPartials(__dirname + '/views/partials');
 
 // General
 app.get('/', function(req, res) {
