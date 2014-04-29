@@ -18,13 +18,8 @@ hbs.registerPartials(__dirname + '/src/views/partials');
 var db = require('./db.js');
 db.connectMongoDB();
 
-// dynamically include routes
-fs.readdirSync('./src/controllers').forEach(function(file) {
-    if (file.substr(-3) == '.js') {
-        route = require('./src/controllers/' + file);
-        route.controller(app);
-    }
-});
+// Routes
+require('./routes.js')(app);
 
 var port = Number(process.env.PORT || 5000);
 app.listen(port, function() {
