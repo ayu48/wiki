@@ -18,6 +18,12 @@ hbs.registerPartials(__dirname + '/src/views/partials');
 var db = require('./db.js');
 db.connectMongoDB();
 
+// Bootstrap Models
+var models_path = __dirname + '/src/models'
+fs.readdirSync(models_path).forEach(function (file) {
+    if (~file.indexOf('.js')) require(models_path + '/' + file)
+});
+
 // Routes
 require('./routes.js')(app);
 

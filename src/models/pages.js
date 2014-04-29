@@ -1,19 +1,20 @@
 var mongoose = require('mongoose')
-    , Schema = mongoose.Schema
-    , pageSchema = new Schema({
-        title: String,
-        content: String,
-        mtime: Number,
-        ctime: Number
-    });
+    , Schema = mongoose.Schema;
 
+// Page Schema
+var pageSchema = new Schema({
+    title: String,
+    content: String,
+    mtime: Number,
+    ctime: Number
+});
+
+
+// Statics
 pageSchema.statics = {
     load: function(cb) {
         this.find().exec(cb);
     }
 }
 
-Pages = mongoose.model('page', pageSchema);
-module.exports = Pages;
-
-
+mongoose.model('Page', pageSchema);

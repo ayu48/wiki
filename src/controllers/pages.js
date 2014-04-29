@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
-var pages = require('../models/pages');
+var pages = mongoose.model('Page');
 
-exports.top = function (req, res) {
+exports.index = function (req, res) {
     pages.load(function(err, pages) {
         if (err) console.log(err);
         res.render('index', {
