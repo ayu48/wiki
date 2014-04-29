@@ -2,9 +2,15 @@
     {{> head}}
     <body>
         {{> nav_bar}}
-        Pages
-        {{#each pages}}
-            <div>{{title}}<div>
-        {{/each}}
+        <div class="container">
+            <div class="page-header">
+                <h1>Pages</h1>
+            </div>
+            {{#each pages}}
+             <div>
+                <a href="">{{title}}</a>
+             </div>
+            {{/each}}
+        </div>
     </body>
 </html>
