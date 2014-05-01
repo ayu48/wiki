@@ -14,6 +14,10 @@ var pageSchema = new Schema({
 pageSchema.statics = {
     load: function(cb) {
         this.find().exec(cb);
+    },
+
+    loadPage: function(pageId, cb) {
+        this.findById(pageId).exec(cb);
     }
 }
 

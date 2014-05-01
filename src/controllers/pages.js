@@ -9,3 +9,12 @@ exports.index = function (req, res) {
         });
     });
 }
+
+exports.page = function (req, res) {
+    pages.loadPage(req.params.id, function(err, page) {
+        if (err) console.log(err);
+        res.render('page', {
+            page: page
+        });
+    });
+}
