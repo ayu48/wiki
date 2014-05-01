@@ -12,7 +12,7 @@ var pageSchema = new Schema({
 
 // Statics
 pageSchema.statics = {
-    load: function(cb) {
+    loadAll: function(cb) {
         this.find().exec(cb);
     },
 
