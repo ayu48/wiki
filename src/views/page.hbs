@@ -6,7 +6,11 @@
             <div class="page-header">
                 <h1>{{{page.title}}}</h1>
             </div>
-            <p class="text-muted">Created: {{page.ctime}}&nbsp;Updated: {{page.mtime}}</p>
+            <p class="text-muted">
+                Created : {{time page.ctime}}
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                Updated : {{time page.mtime}}
+            </p>
 
             <p>{{page.content}}</p>
 

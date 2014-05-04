@@ -13,6 +13,7 @@ app.set('view engine', 'hbs');
 app.use(logfmt.requestLogger());
 app.use(express.static(path.join(__dirname, 'public')));
 hbs.registerPartials(__dirname + '/src/views/partials');
+require('./src/helpers.js');
 
 // DB
 var db = require('./db.js');
