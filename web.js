@@ -1,5 +1,7 @@
 // Module dependencies
 var express = require("express")
+    , bodyParser = require("body-parser")
+    , methodOverride = require("method-override")
     , logfmt = require("logfmt")
     , path = require('path')
     , fs = require('fs')
@@ -11,6 +13,8 @@ var app = express();
 app.set('views', __dirname + '/src/views');
 app.set('view engine', 'hbs');
 app.use(logfmt.requestLogger());
+app.use(bodyParser());
+app.use(methodOverride());
 app.use(express.static(path.join(__dirname, 'public')));
 hbs.registerPartials(__dirname + '/src/views/partials');
 require('./src/helpers.js');

@@ -21,4 +21,11 @@ pageSchema.statics = {
     }
 }
 
+// Methods
+pageSchema.methods = {
+    delete: function(pageId, cb) {
+        //TODO: delete page by id
+    }
+}
+
 mongoose.model('Page', pageSchema);

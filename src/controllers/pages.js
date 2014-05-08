@@ -18,3 +18,10 @@ exports.page = function (req, res) {
         });
     });
 }
+
+exports.delete = function (req, res) {
+    //FIXME: there must be a better way..
+    pages.schema.methods.delete(req.params.id, function(err, page) {
+        if (err) console.log(err);
+    });
+}
