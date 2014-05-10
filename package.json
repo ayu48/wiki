@@ -10,6 +10,8 @@
   "author": "ayu",
   "license": "BSD",
   "dependencies": {
+    "body-parser": "1.0.2",
+    "method-override": "1.0.0",
     "hbs": "2.6.0",
     "logfmt": "~1.1.2",
     "express": "~4.0.0",

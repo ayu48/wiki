@@ -15,13 +15,18 @@
             <p>{{page.content}}</p>
 
             <p class="bs-component">
-                <form method="post" action="/page/{{page._id}}">
-                    <input type="hidden">
-                    <a href="/page/{{page._id}}/edit" type="button" class="btn btn-default">Edit</a>
-                    <input type="hidden" name="_method" value="DELETE">
-                    <button type="submit" value="{{page._id}}"class="btn btn-danger">Delete</button>
-                </form>
+                <a href="/page/edit/{{page._id}}" class="btn btn-default">Edit</a>
+                <button page-id="{{page._id}}" class="btn btn-danger js-delete-page">Delete</button>
             </p>
         </div>
+        <script>
+            $('.js-delete-page').click(function(event) {
+                $target = $(event.target);
+                $.ajax({
+                    url: '/page/' + $target.attr('page-id'),
+                    type: 'DELETE'
+                });
+            });
+        </script>
     </body>
 </html>
