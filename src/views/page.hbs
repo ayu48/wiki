@@ -20,11 +20,17 @@
             </p>
         </div>
         <script>
-            $('.js-delete-page').click(function(event) {
-                $target = $(event.target);
-                $.ajax({
-                    url: '/page/' + $target.attr('page-id'),
-                    type: 'DELETE'
+            $(document).ready(function() {
+                $('.js-delete-page').click(function(event) {
+                    $target = $(event.target);
+                    $.ajax({
+                        url: '/page/' + $target.attr('page-id'),
+                        type: 'DELETE'
+                    }).done(function() {
+                        //TODO: donehandler
+                    }).fail(function() {
+                        //TODO: failhandler
+                    });
                 });
             });
         </script>
