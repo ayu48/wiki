@@ -4,7 +4,7 @@ var Page = mongoose.model('Page');
 exports.index = function (req, res) {
     Page.loadAll(function(err, pages) {
         if (err) console.log(err);
-        res.render('index', {
+        res.render('top', {
             pages: pages
         });
     });

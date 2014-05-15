@@ -18,6 +18,10 @@ pageSchema.statics = {
 
     loadPage: function(pageId, cb) {
         this.findById(pageId).exec(cb);
+    },
+
+    addPage: function(newPage, cb) {
+        newPage.save(cb);
     }
 }
 
@@ -26,6 +30,7 @@ pageSchema.methods = {
     delete: function(pageId, cb) {
         this.model('Page').findById(pageId).remove().exec(cb);
     }
+
 }
 
 mongoose.model('Page', pageSchema);
