@@ -1,27 +1,20 @@
 var mongoose = require('mongoose');
-var pages = mongoose.model('Page');
+var PageModel = mongoose.model('Page');
+
+var page;
 
 exports.index = function (req, res) {
-    pages.loadAll(function(err, pages) {
-        if (err) console.log(err);
-        res.render('index', {
-            pages: pages
-        });
-    });
-}
-
-exports.page = function (req, res) {
-    pages.loadPage(req.params.id, function(err, page) {
-        if (err) console.log(err);
+    PageModel.loadPage(req.params.id, function(err, pageInfo) {
+        page = pageInfo;
         res.render('page', {
-            page: page
+            page: pageInfo
         });
     });
 }
 
 exports.delete = function (req, res) {
-    //FIXME: there must be a better way..
-    pages.schema.methods.delete(req.params.id, function(err, page) {
+    page.delete(req.params.id, function(err) {
         if (err) console.log(err);
+        res.send();
     });
 }

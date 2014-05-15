@@ -24,7 +24,7 @@ pageSchema.statics = {
 // Methods
 pageSchema.methods = {
     delete: function(pageId, cb) {
-        //TODO: delete page by id
+        this.model('Page').findById(pageId).remove().exec(cb);
     }
 }
 

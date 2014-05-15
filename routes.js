@@ -1,17 +1,18 @@
 // Controllers
-var pages = require('./src/controllers/pages');
+var page = require('./src/controllers/pages');
+var top = require('./src/controllers/top');
 
 
 // Expose Routes
 module.exports = function (app) {
     // Get
-    app.get('/', pages.index);
-    app.get('/page/:id', pages.page);
+    app.get('/', top.index);
+    app.get('/page/:id', page.index);
     app.get('*', function(req, res) {
         res.redirect('/');
     });
 
     // Delete
-    app.del('/page/:id', pages.delete);
+    app.del('/page/:id', page.delete);
 
 }
