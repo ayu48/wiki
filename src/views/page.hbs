@@ -12,7 +12,7 @@
                 Updated : {{time page.mtime}}
             </p>
 
-            <p>{{page.content}}</p>
+            {{#marked}}{{page.content}}{{/marked}}
 
             <p class="bs-component">
                 <a href="/page/edit/{{page._id}}" class="btn btn-default">Edit</a>
