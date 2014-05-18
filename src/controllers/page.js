@@ -1,15 +1,17 @@
 var mongoose = require('mongoose');
 var Page = mongoose.model('Page');
+var PageFactory = require('../models/page-factory');
+var PageRepo = require('../models/page-repo');
 
 var pageScheme;
 
 exports.index = function (req, res) {
-    Page.loadPage(req.params.id, function(err, pageInfo) {
-        pageScheme = pageInfo;
-        res.render('page', {
-            page: pageInfo
-        });
-    });
+    PageRepo.getPage(req.params.id).then(
+        function(page) {
+            res.render('page', {page: page});
+        },
+        function (err) {console.log(err)}
+    );
 }
 
 exports.newPageForm = function (req, res) {
@@ -17,25 +19,21 @@ exports.newPageForm = function (req, res) {
 }
 
 exports.savePage = function (req, res) {
-    Page.addPage(
-        new Page({
-            title: req.body.title,
-            content: req.body.body,
-            mtime: new Date().getTime(),
-            ctime: new Date().getTime()
-        }),
-        function(err, page) {
-            if (err) console.log(err);
+    PageRepo.createPage(req.body.title, req.body.body).then(
+        function(page) {
             res.render('page', {
                 page: page
             })
-        }
-    )
+        },
+        function(err) {console.log(err)}
+    );
 }
 
 exports.delete = function (req, res) {
-    pageScheme.delete(req.params.id, function(err) {
-        if (err) console.log(err);
-        res.send();
-    });
+    PageRepo.deletePage(req.params.id).then(
+        function() {
+            res.send()
+        },
+        function(err) {console.log(err)}
+    );
 }

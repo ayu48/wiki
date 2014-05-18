@@ -9,28 +9,22 @@ var pageSchema = new Schema({
     ctime: Number
 });
 
-
-// Statics
-pageSchema.statics = {
+module.exports = {
     loadAll: function(cb) {
-        this.find().exec(cb);
+        mongoose.model('Page').find().exec(cb);
     },
 
     loadPage: function(pageId, cb) {
-        this.findById(pageId).exec(cb);
+        mongoose.model('Page').findById(pageId).exec(cb);
     },
 
     addPage: function(newPage, cb) {
         newPage.save(cb);
-    }
-}
+    },
 
-// Methods
-pageSchema.methods = {
     delete: function(pageId, cb) {
-        this.model('Page').findById(pageId).remove().exec(cb);
+        mongoose.model('Page').findById(pageId).remove().exec(cb);
     }
-
 }
 
 mongoose.model('Page', pageSchema);
