@@ -1,11 +1,13 @@
 var mongoose = require('mongoose');
-var Page = mongoose.model('Page');
+var PageRepo = require('../models/page-repo');
 
 exports.index = function (req, res) {
-    Page.loadAll(function(err, pages) {
-        if (err) console.log(err);
-        res.render('top', {
-            pages: pages
-        });
-    });
+    PageRepo.getAllPages().then(
+        function(pages) {
+            res.render('top', {
+                pages: pages
+            });
+        },
+        function(err) {console.log(err)}
+    );
 }

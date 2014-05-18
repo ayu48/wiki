@@ -14,6 +14,15 @@ module.exports = {
         });
     },
 
+    getAllPages: function() {
+        return new Promise(function(resolve, reject) {
+            PageClient.loadAll(function(err, pages) {
+                if (err) reject(err);
+                else resolve(pages);
+            });
+        });
+    },
+
    createPage: function(title, body) {
        return new Promise(function(resolve, reject) {
            PageClient.addPage(

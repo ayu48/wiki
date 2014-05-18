@@ -1,9 +1,6 @@
 var mongoose = require('mongoose');
 var Page = mongoose.model('Page');
-var PageFactory = require('../models/page-factory');
 var PageRepo = require('../models/page-repo');
-
-var pageScheme;
 
 exports.index = function (req, res) {
     PageRepo.getPage(req.params.id).then(
@@ -21,9 +18,7 @@ exports.newPageForm = function (req, res) {
 exports.savePage = function (req, res) {
     PageRepo.createPage(req.body.title, req.body.body).then(
         function(page) {
-            res.render('page', {
-                page: page
-            })
+            res.redirect('/page/' + page._id);
         },
         function(err) {console.log(err)}
     );
