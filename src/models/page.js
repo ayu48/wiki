@@ -4,7 +4,7 @@ var mongoose = require('mongoose')
 // Page Schema
 var pageSchema = new Schema({
     title: String,
-    content: String,
+    body: String,
     mtime: Number,
     ctime: Number
 });

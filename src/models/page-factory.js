@@ -6,7 +6,7 @@ module.exports = {
     createPageModel: function(title, body) {
         return new Page ({
             title: title,
-            content: body,
+            body: body,
             mtime: new Date().getTime(),
             ctime: new Date().getTime()
         });
