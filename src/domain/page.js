@@ -25,7 +25,7 @@ module.exports = {
     updatePage: function(pageId, title, body, cb) {
         mongoose.model('Page').findByIdAndUpdate(
             pageId,
-            {$set: {title: title, body: body}},
+            {$set: {title: title, body: body, mtime: new Date().getTime()}},
             cb
         );
     },

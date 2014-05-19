@@ -2,7 +2,7 @@ var hbs = require('hbs');
 var marked = require('marked');
 
 hbs.registerHelper('time', function (timestamp) {
-    var t = new Date(timestamp*1000);
+    var t = new Date(timestamp);
     var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     var year = t.getFullYear();
     var month = months[t.getMonth()];
