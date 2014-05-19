@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var Page = mongoose.model('Page');
-var PageRepo = require('../models/page-repo');
+var PageRepo = require('../domain/page-repo');
 
 exports.index = function (req, res) {
     PageRepo.getPage(req.params.id).then(

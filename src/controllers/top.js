@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var PageRepo = require('../models/page-repo');
+var PageRepo = require('../domain/page-repo');
 
 exports.index = function (req, res) {
     PageRepo.getAllPages().then(

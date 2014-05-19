@@ -24,7 +24,7 @@ var db = require('./db.js');
 db.connectMongoDB();
 
 // Bootstrap Models
-var models_path = __dirname + '/src/models'
+var models_path = __dirname + '/src/domain'
 fs.readdirSync(models_path).forEach(function (file) {
     if (~file.indexOf('.js')) require(models_path + '/' + file)
 });
