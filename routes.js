@@ -7,14 +7,18 @@ var top = require('./src/controllers/top');
 module.exports = function (app) {
     // Get
     app.get('/', top.index);
-    app.get('/page/add', page.newPageForm);
+    app.get('/page/add', page.newPage);
+    app.get('/page/edit/:id', page.editPage);
     app.get('/page/:id', page.index);
     app.get('*', function(req, res) {
         res.redirect('/');
     });
 
+    // Post
+    app.post('/page/add', page.createPage);
+    app.post('/page/edit/:id', page.updatePage);
+
     // Delete
-    app.post('/page/add', page.savePage);
     app.del('/page/:id', page.delete);
 
 }

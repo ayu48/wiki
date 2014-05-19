@@ -22,6 +22,14 @@ module.exports = {
         newPage.save(cb);
     },
 
+    updatePage: function(pageId, title, body, cb) {
+        mongoose.model('Page').findByIdAndUpdate(
+            pageId,
+            {$set: {title: title, body: body}},
+            cb
+        );
+    },
+
     delete: function(pageId, cb) {
         mongoose.model('Page').findById(pageId).remove().exec(cb);
     }
