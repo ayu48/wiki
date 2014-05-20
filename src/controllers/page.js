@@ -3,9 +3,12 @@ var Page = mongoose.model('Page');
 var PageRepo = require('../domain/page-repo');
 
 exports.index = function (req, res) {
-    PageRepo.getPage(req.params.id).then(
-        function(page) {
-            res.render('page', {page: page});
+    PageRepo.getPageWithChildPages(req.params.id).then(
+        function(result) {
+            res.render('page', {
+                page: result[0],
+                childPages: result[1]
+            });
         },
         function (err) {console.log(err)}
     );
@@ -25,7 +28,7 @@ exports.editPage = function (req, res) {
 }
 
 exports.createPage = function (req, res) {
-    PageRepo.createPage(req.body.title, req.body.body).then(
+    PageRepo.createPage(req.body.title, req.body.body, req.params.id).then(
         function(page) {
             res.redirect('/page/' + page._id);
         },

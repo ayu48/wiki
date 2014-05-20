@@ -1,8 +1,13 @@
 <!DOCTYPE html>
     {{> head}}
     <body>
-        {{> nav_bar}}
+        {{> nav_bar page}}
         <div class="container-fluid">
+            <p class="bs-component pull-right">
+                <a href="/page/edit/{{page._id}}" class="btn btn-default">Edit</a>
+                <button page-id="{{page._id}}" class="btn btn-danger js-delete-page">Delete</button>
+                <a href="/page/add/{{page._id}}" class="btn btn-success">Add Page</a>
+            </p>
             <div class="page-header">
                 <h1>{{{page.title}}}</h1>
             </div>
@@ -14,11 +19,27 @@
 
             {{#marked}}{{page.body}}{{/marked}}
 
-            <p class="bs-component">
-                <a href="/page/edit/{{page._id}}" class="btn btn-default">Edit</a>
-                <button page-id="{{page._id}}" class="btn btn-danger js-delete-page">Delete</button>
-            </p>
+            <!------- child pages -------------->
+            {{#if childPages}}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h5 class="panel-title">
+                        <a data-toggle="collapse" href="#childPages">
+                        Child Pages
+                        </a>
+                    </h5>
+                </div>
+                <div id="childPages" class="panel-collapse collapse">
+                    {{#each childPages}}
+                    <a href="/page/{{_id}}" class="list-group-item">
+                        {{title}}
+                    </a>
+                    {{/each}}
+                </div>
+            </div>
+            {{/if}}
         </div>
+
         <script>
             $(document).ready(function() {
                 $('.js-delete-page').click(function(event) {

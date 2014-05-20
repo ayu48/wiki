@@ -8,6 +8,7 @@ module.exports = function (app) {
     // Get
     app.get('/', top.index);
     app.get('/page/add', page.newPage);
+    app.get('/page/add/:id', page.newPage);
     app.get('/page/edit/:id', page.editPage);
     app.get('/page/:id', page.index);
     app.get('*', function(req, res) {
@@ -16,6 +17,7 @@ module.exports = function (app) {
 
     // Post
     app.post('/page/add', page.createPage);
+    app.post('/page/add/:id', page.createPage);
     app.post('/page/edit/:id', page.updatePage);
 
     // Delete
