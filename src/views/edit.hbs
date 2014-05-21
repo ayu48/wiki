@@ -5,34 +5,58 @@
         <div class="container-fluid">
             <div class="well bs-component">
                 <div class="btn-group" style="margin-bottom:8px;">
-                    <button id="edit-mode" type="button" class="btn btn-default active">Edit</button>
-                    <button id="preview-mode" type="button" class="btn btn-default">Preview</button>
+                    <button id="edit-mode-btn" type="button" class="btn btn-default active">Edit</button>
+                    <button id="preview-mode-btn" type="button" class="btn btn-default">Preview</button>
                 </div>
-                <form name="save-page" method="post">
+
+                <!------- Edit Mode -------------->
+                <form id="edit-form" method="post" style="height:570px">
                     <div class="form-group">
-                      <input class="form-control" type="text" name="title" value="{{page.title}}">
+                      <input class="form-control" type="text" name="title" value="{{page.title}}" style="height:40px">
                     </div>
                     <div class="form-group">
-                        <textarea class="form-control" rows="20" id="textArea" name="body">{{page.body}}</textarea>
-                    </div>
-                    <div class="bs-component">
-                      <button type="submit" class="btn btn-primary">Save</button>
+                        <textarea class="form-control" id="textArea" name="body" style="height:500px" >{{page.body}}</textarea>
                     </div>
                 </form>
+
+                <!------- Preview Mode -------------->
+                <div id="preview-mode" style="display:none;height:570px">
+                    <h1 id="edited-title">{{{page.title}}}</h1>
+                    <div id="edited-body">{{#marked}}{{page.body}}{{/marked}}</div>
+                </div>
+                <div class="bs-component">
+                  <button type="submit" form="edit-form" class="btn btn-primary">Save</button>
+                </div>
             </div>
         </div>
     </body>
     <script>
         $(document).ready(function() {
-            $('#preview-mode').click(function(event) {
-                $('#preview-mode').addClass('active');
-                $('#edit-mode').removeClass('active');
+            $('#preview-mode-btn').click(function(event) {
+                $('#preview-mode-btn').addClass('active');
+                $('#edit-mode-btn').removeClass('active');
+                $('#edited-title').html(getEditedTitle());
+                $('#edited-body').html(getEditedBody());
+                $('#edit-form').hide();
+                $('#preview-mode').show();
             });
 
-            $('#edit-mode').click(function(event) {
-                $('#preview-mode').removeClass('active');
+            $('#edit-mode-btn').click(function(event) {
+                $('#preview-mode-btn').removeClass('active');
                 $('#edit-mode').addClass('active');
+                $('#edit-form').show();
+                $('#preview-mode').hide();
+
             });
+
+            getEditedTitle = function() {
+                return $('input').val();
+            }
+
+            //FIXME
+            getEditedBody = function() {
+                return $('textarea').html();
+            }
         });
     </script>
 </html>
