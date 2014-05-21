@@ -1,5 +1,16 @@
 var hbs = require('hbs');
 var marked = require('marked');
+var highlight = require('highlight.js');
+
+
+// set syntax highlighter to marked renderer
+var options = {
+    highlight: function (code) {
+        return highlight.highlightAuto(code).value;
+    }
+};
+marked.setOptions(options);
+
 
 hbs.registerHelper('time', function (timestamp) {
     var t = new Date(timestamp);
@@ -25,6 +36,9 @@ hbs.registerHelper('time', function (timestamp) {
  * See https://github.com/chjj/marked for details.
  */
 hbs.registerHelper('marked', function (options) {
+
     var markdownString = options.fn(this);
+
     return marked(markdownString);
+
 });
