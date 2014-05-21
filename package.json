@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": "",
+  "repository": "https://github.com/blueteeth48/wiki.git",
   "author": "ayu",
   "license": "BSD",
   "dependencies": {
@@ -18,7 +18,8 @@
     "mongodb": "~1.4.2",
     "mongoose": "3.8.8",
     "marked": "~0.3.2",
-    "promise": "5.0.0"
+    "promise": "5.0.0",
+    "highlight.js": "~8.0.0"
   },
   "engines": {
     "node": "0.10.x"
