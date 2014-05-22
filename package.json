@@ -19,7 +19,8 @@
     "mongoose": "3.8.8",
     "marked": "~0.3.2",
     "promise": "5.0.0",
-    "highlight.js": "~8.0.0"
+    "highlight.js": "~8.0.0",
+    "emoji-images": "~0.1.1"
   },
   "engines": {
     "node": "0.10.x"

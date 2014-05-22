@@ -1,6 +1,11 @@
 var hbs = require('hbs');
 var marked = require('marked');
 var highlight = require('highlight.js');
+var emoji = require('emoji-images');
+
+// constants
+var EMOJI_DIR = '/img/emojis';
+var EMOJI_SIZE = 22;
 
 
 // set syntax highlighter to marked renderer
@@ -39,6 +44,6 @@ hbs.registerHelper('marked', function (options) {
 
     var markdownString = options.fn(this);
 
-    return marked(markdownString);
+    return emoji(marked(markdownString), EMOJI_DIR, EMOJI_SIZE);
 
 });
