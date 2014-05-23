@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var marked = require('marked');
 var Page = mongoose.model('Page');
 var PageRepo = require('../domain/page-repo');
 
@@ -52,4 +53,8 @@ exports.delete = function (req, res) {
         },
         function(err) {console.log(err)}
     );
+}
+
+exports.markdownPreview = function (req, res) {
+    res.send(marked(req.body.text));
 }

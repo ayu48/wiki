@@ -53,9 +53,17 @@
                 return $('input').val();
             }
 
-            //FIXME
             getEditedBody = function() {
-                return $('textarea').html();
+                var text = $('textarea').html();
+                $.ajax({
+                    data: {text: text},
+                    url: '/markdown_preview',
+                    type: 'POST'
+                }).done(function(text) {
+                    return text;
+                }).fail(function(error) {
+                    console.log(error);
+                });
             }
         });
     </script>

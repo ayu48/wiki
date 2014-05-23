@@ -19,6 +19,7 @@ module.exports = function (app) {
     app.post('/page/add', page.createPage);
     app.post('/page/add/:id', page.createPage);
     app.post('/page/edit/:id', page.updatePage);
+    app.post('/markdown_preview', page.markdownPreview);
 
     // Delete
     app.del('/page/:id', page.delete);
