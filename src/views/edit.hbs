@@ -36,7 +36,9 @@
                 $('#preview-mode-btn').addClass('active');
                 $('#edit-mode-btn').removeClass('active');
                 $('#edited-title').html(getEditedTitle());
-                $('#edited-body').html(getEditedBody());
+                getEditedBody(function(text){
+                    $('#edited-body').html(text);
+                });
                 $('#edit-form').hide();
                 $('#preview-mode').show();
             });
@@ -53,14 +55,14 @@
                 return $('input').val();
             }
 
-            getEditedBody = function() {
-                var text = $('textarea').html();
+            getEditedBody = function(cb) {
+                var text = $('textarea').val();
                 $.ajax({
                     data: {text: text},
                     url: '/markdown_preview',
                     type: 'POST'
                 }).done(function(text) {
-                    return text;
+                    cb(text);
                 }).fail(function(error) {
                     console.log(error);
                 });
