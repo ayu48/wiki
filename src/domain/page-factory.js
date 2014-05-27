@@ -12,4 +12,4 @@ module.exports = {
             parent_id: parentId
         });
     }
-}
+};

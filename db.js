@@ -8,4 +8,4 @@ exports.connectMongoDB = function() {
             console.log('success');
         }
     });
-}
+};

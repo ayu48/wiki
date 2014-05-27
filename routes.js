@@ -24,4 +24,4 @@ module.exports = function (app) {
     // Delete
     app.del('/page/:id', page.delete);
 
-}
+};

@@ -39,6 +39,6 @@ module.exports = {
     delete: function(pageId, cb) {
         mongoose.model('Page').findById(pageId).remove().exec(cb);
     }
-}
+};
 
 mongoose.model('Page', pageSchema);
