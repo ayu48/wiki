@@ -1,8 +1,6 @@
 var Promise = require('promise');
 var PageFactory = require('./page-factory');
 var PageClient = require('./page');
-var mongoose = require('mongoose');
-var PageModel = mongoose.model('Page');
 
 module.exports = {
     //TODO: erase?
@@ -26,7 +24,7 @@ module.exports = {
                 PageClient.getChildPages(pageId, function(err, pages) {
                     if (err) reject(err);
                     else resolve(pages);
-                })
+                });
             }
         );
         return new Promise.all([getPageReq, childPagesReq]);
@@ -49,8 +47,8 @@ module.exports = {
                     if (err) reject(err);
                     else resolve(page);
                 }
-            )
-        })
+            );
+        });
     },
 
     updatePage: function(pageId, title, body) {
@@ -70,4 +68,4 @@ module.exports = {
             });
         });
     }
-}
+};

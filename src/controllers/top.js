@@ -1,4 +1,3 @@
-var mongoose = require('mongoose');
 var PageRepo = require('../domain/page-repo');
 
 exports.index = function (req, res) {
@@ -8,6 +7,6 @@ exports.index = function (req, res) {
                 pages: pages
             });
         },
-        function(err) {console.log(err)}
+        function(err) {console.log(err);}
     );
-}
+};
