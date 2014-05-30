@@ -1,21 +1,9 @@
 <!DOCTYPE html>
     {{> head}}
     <body>
-        {{> nav_bar page}}
+        {{> nav_bar}}
         <div class="container-fluid">
-            <p class="bs-component pull-right">
-                <a href="/page/edit/{{page._id}}" class="btn btn-default">Edit</a>
-                <button page-id="{{page._id}}" class="btn btn-danger js-delete-page">Delete</button>
-                <a href="/page/add/{{page._id}}" class="btn btn-success">Add Page</a>
-            </p>
-            <div class="page-header">
-                <h1>{{{page.title}}}</h1>
-            </div>
-            <p class="text-muted">
-                Created : {{time page.ctime}}
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                Updated : {{time page.mtime}}
-            </p>
+            {{> action_buttons}}
 
             {{#marked}}{{{page.body}}}{{/marked}}
 
