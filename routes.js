@@ -7,6 +7,7 @@ var top = require('./src/controllers/top');
 module.exports = function (app) {
     // Get
     app.get('/', top.index);
+    app.get('/login', function(req, res){ res.render('login')});
     app.get('/page/add', page.newPage);
     app.get('/page/add/:id', page.newPage);
     app.get('/page/edit/:id', page.editPage);
