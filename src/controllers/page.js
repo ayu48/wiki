@@ -1,4 +1,3 @@
-var mongoose = require('mongoose');
 var marked = require('marked');
 var PageRepo = require('../domain/page-repo');
 

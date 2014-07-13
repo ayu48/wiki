@@ -5,7 +5,8 @@ var express = require("express")
     , logfmt = require("logfmt")
     , path = require('path')
     , fs = require('fs')
-    , hbs = require('hbs');
+    , hbs = require('hbs')
+    , passport = require('passport');
 
 var app = express();
 
@@ -14,6 +15,8 @@ app.set('views', __dirname + '/src/views');
 app.set('view engine', 'hbs');
 app.use(logfmt.requestLogger());
 app.use(bodyParser());
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(methodOverride());
 app.use(express.static(path.join(__dirname, 'public')));
 hbs.registerPartials(__dirname + '/src/views/partials');
