@@ -2,10 +2,11 @@
 var authController = require('./src/controllers/auth');
 var topController = require('./src/controllers/top');
 var pageController = require('./src/controllers/page');
+// Authorization
+var auth = require('./config/authorization');
 
 // Expose Routes
 module.exports = function (app) {
-
     // Get
     app.get('/', topController.index);
     app.get('/login', function(req, res){ res.render('login');});

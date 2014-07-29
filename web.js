@@ -6,6 +6,7 @@ var express = require("express")
     , path = require('path')
     , fs = require('fs')
     , hbs = require('hbs')
+    , session = require('express-session')
     , passport = require('passport');
 
 var app = express();
@@ -15,6 +16,8 @@ app.set('views', __dirname + '/src/views');
 app.set('view engine', 'hbs');
 app.use(logfmt.requestLogger());
 app.use(bodyParser());
+//FIXME
+app.use(session({secret: 'secret key'}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(methodOverride());
