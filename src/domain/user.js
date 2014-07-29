@@ -2,10 +2,7 @@ var mongoose = require('mongoose')
     , Schema = mongoose.Schema;
 
 var userSchema = new Schema({
-    email: {type: String, default: ''},
     username: {type: String, default: ''},
-    hashed_password: {type: String, default: ''},
-    authToken: {type: String, default: ''},
     provider: { type: String, default: ''},
     google: {}
 });
