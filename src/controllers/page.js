@@ -4,7 +4,7 @@ var PageRepo = require('../domain/page-repo');
 exports.index = function (req, res) {
     PageRepo.getPageWithChildPages(req.params.id).then(
         function(result) {
-            res.render('page', {
+            res.render('pages/page', {
                 page: result[0],
                 childPages: result[1]
             });
@@ -14,7 +14,7 @@ exports.index = function (req, res) {
 };
 
 exports.newPage = function (req, res) {
-    res.render('edit');
+    res.render('pages/edit');
 };
 
 exports.editPage = function (req, res) {
