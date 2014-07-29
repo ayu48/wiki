@@ -1,6 +1,15 @@
 var passport = require('passport');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var UserRepo = require('../domain/user-repo');
+var authorization = require('../../config/authorization');
+
+exports.login = function(req, res) {
+    if (!req.isAuthenticated()) {
+        res.render('login');
+    } else {
+        res.redirect('/');
+    }
+}
 
 exports.googleAuth = passport.authenticate('google');
 

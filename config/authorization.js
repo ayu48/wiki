@@ -1,8 +1,8 @@
 
-exports.isLoggedIn = function(req, res, next) {
+exports.requiresLogin = function(req, res, next) {
     if (req.isAuthenticated()) {
         return next();
     }
     //TODO error message
-    res.redirect('/');
+    res.redirect('/login');
 }
