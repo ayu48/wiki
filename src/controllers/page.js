@@ -20,7 +20,7 @@ exports.newPage = function (req, res) {
 exports.editPage = function (req, res) {
     PageRepo.getPage(req.params.id).then(
         function(page) {
-            res.render('edit', {page: page});
+            res.render('pages/edit', {page: page});
         },
         function (err) {console.log(err);}
     );
