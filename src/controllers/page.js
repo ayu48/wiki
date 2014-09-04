@@ -27,7 +27,7 @@ exports.editPage = function (req, res) {
 };
 
 exports.createPage = function (req, res) {
-    PageRepo.createPage(req.body.title, req.body.body, req.params.id).then(
+    PageRepo.createPage(req.body.title, req.user.username, req.body.body, req.params.id).then(
         function(page) {
             res.redirect('/page/' + page._id);
         },

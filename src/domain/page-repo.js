@@ -39,10 +39,10 @@ module.exports = {
         });
     },
 
-    createPage: function(title, body, parentId) {
+    createPage: function(title, author, body, parentId) {
         return new Promise(function(resolve, reject) {
             PageClient.addPage(
-                PageFactory.createPageModel(title, body, parentId),
+                PageFactory.createPageModel(title, author, body, parentId),
                 function(err, page) {
                     if (err) reject(err);
                     else resolve(page);
