@@ -20,35 +20,14 @@
     <script>
         $(document).ready(function() {
             $('#check-username-availability').click(function(event) {
-                var username = $('input').val();
-
-                // validate
-                if (!isValid(username)) {
-                    showErrorMessage('Not a valid username :(');
-                    return;
-                }
-
-                // check availability
-                checkAvailability(username, function(available) {
-                    if (available) showSuccessMessage('Username available!');
+                checkAvailability($('input').val(), function(isAvailable) {
+                    if (isAvailable) showSuccessMessage('Username available!');
                     else showErrorMessage('Sorry, already taken :(');
                 });
             });
 
             $('#set-username').click(function(event) {
-                var username = $('input').val();
-
-                // validate
-                if (!isValid(username)) {
-                    showErrorMessage('Not a valid username :(');
-                    return;
-                }
-
-                // set username
-                setUsername(username, function(available) {
-                    if (available) showSuccessMessage('Username available!');
-                    else showErrorMessage('Sorry, already taken :(');
-                });
+                setUsername($('input').val());
             });
 
             checkAvailability = function(username, cb) {
@@ -56,10 +35,10 @@
                     data: {username: username},
                     url: '/username_availability',
                     type: 'POST'
-                }).done(function(available) {
-                    cb(available);
+                }).done(function(isAvailable) {
+                    cb(isAvailable);
                 }).fail(function(error) {
-                    console.log(error);
+                    showErrorMessage(error.responseText);
                 });
             };
 
@@ -69,17 +48,12 @@
                     url: '/set_username',
                     type: 'POST'
                 }).done(function(results) {
-                    alert('username set!');
+                    alert('Username set!');
                     window.location = '/';
                 }).fail(function(error) {
-                    console.log(error);
+                    showErrorMessage(error.responseText);
                 });
-            }
-
-            isValid = function(username) {
-                validName = username.match(/^[a-z0-9_-]{3,15}$/);
-                return !!validName;
-            }
+            };
 
             showErrorMessage = function(message) {
                 $('#username-setting').addClass('has-error');
