@@ -39,6 +39,15 @@ module.exports = {
         });
     },
 
+    getAllPagesByUsername: function(username) {
+        return new Promise(function(resolve, reject) {
+            PageClient.getAllByUsername(username, function(err, pages) {
+                if (err) reject(err);
+                else resolve(pages);
+            });
+        });
+    },
+
     createPage: function(title, author, body, parentId) {
         return new Promise(function(resolve, reject) {
             PageClient.addPage(

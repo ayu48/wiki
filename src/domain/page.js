@@ -17,6 +17,10 @@ module.exports = {
         mongoose.model('Page').find().exec(cb);
     },
 
+    getAllByUsername: function(username, cb) {
+        mongoose.model('Page').find({'author': username}).exec(cb);
+    },
+
     getPage: function(pageId, cb) {
         mongoose.model('Page').findById(pageId).exec(cb);
     },

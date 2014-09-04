@@ -10,6 +10,7 @@ var auth = require('./config/authorization');
 module.exports = function (app) {
     // Get
     app.get('/', topController.index);
+    app.get('/:username', topController.userTop);
     app.get('/login', authController.login);
     app.get('/settings/username', auth.requiresLogin, settingsController.username);
     app.get('/page/add', auth.requiresLogin, pageController.newPage);
