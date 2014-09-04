@@ -3,13 +3,95 @@
     <body>
     <div class="well border" id="username-setting" style="text-align:center;">
       <h2>Username</h2>
-      <div class="input-group space-10">
+
+      <label class="control-label" id="input-message" for="username-input" style="display:none;"></label>
+      <div class="input-group space-10" id="username-input">
+
+
         <input type="text" class="form-control">
         <span class="input-group-btn">
-          <button class="btn btn-default" type="button">availability</button>
+          <button id="check-username-availability" class="btn btn-default" type="button">Availability</button>
         </span>
       </div>
-      <button type="button" class="btn btn-block btn-primary">Set</button>
+      <button id="set-username" type="button" class="btn btn-block btn-primary">Set</button>
     </div>
     </body>
+
+    <script>
+        $(document).ready(function() {
+            $('#check-username-availability').click(function(event) {
+                var username = $('input').val();
+
+                // validate
+                if (!isValid(username)) {
+                    showErrorMessage('Not a valid username :(');
+                    return;
+                }
+
+                // check availability
+                checkAvailability(username, function(available) {
+                    if (available) showSuccessMessage('Username available!');
+                    else showErrorMessage('Sorry, already taken :(');
+                });
+            });
+
+            $('#set-username').click(function(event) {
+                var username = $('input').val();
+
+                // validate
+                if (!isValid(username)) {
+                    showErrorMessage('Not a valid username :(');
+                    return;
+                }
+
+                // set username
+                setUsername(username, function(available) {
+                    if (available) showSuccessMessage('Username available!');
+                    else showErrorMessage('Sorry, already taken :(');
+                });
+            });
+
+            checkAvailability = function(username, cb) {
+                $.ajax({
+                    data: {username: username},
+                    url: '/username_availability',
+                    type: 'POST'
+                }).done(function(available) {
+                    cb(available);
+                }).fail(function(error) {
+                    console.log(error);
+                });
+            };
+
+            setUsername = function(username) {
+                $.ajax({
+                    data: {username: username},
+                    url: '/set_username',
+                    type: 'POST'
+                }).done(function(results) {
+                    alert('username set!');
+                    window.location = '/';
+                }).fail(function(error) {
+                    console.log(error);
+                });
+            }
+
+            isValid = function(username) {
+                validName = username.match(/^[a-z0-9_-]{3,15}$/);
+                return !!validName;
+            }
+
+            showErrorMessage = function(message) {
+                $('#username-setting').addClass('has-error');
+                $('#input-message').show().html(message);
+            };
+
+            showSuccessMessage = function(message) {
+                $('#username-setting').addClass('has-success');
+                $('#input-message').show().html(message);
+            };
+
+        });
+    </script>
+
 </html>

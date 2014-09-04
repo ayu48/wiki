@@ -24,6 +24,8 @@ module.exports = function (app) {
     app.post('/page/add/:id', auth.requiresLogin, pageController.createPage);
     app.post('/page/edit/:id', auth.requiresLogin, pageController.updatePage);
     app.post('/markdown_preview', pageController.markdownPreview);
+    app.post('/username_availability', settingsController.usernameAvailability);
+    app.post('/set_username', settingsController.setUsername);
 
     // Delete
     app.del('/page/:id', pageController.delete);

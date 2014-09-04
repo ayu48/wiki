@@ -32,5 +32,30 @@ module.exports = {
                 }
             )
         });
+    },
+
+    setUsername: function(username, userId) {
+        return new Promise(function(resolve, reject) {
+            UserClient.setUsername(
+                username,
+                userId,
+                function(err, user) {
+                    if (err) reject(err);
+                    else resolve(user.username);
+                }
+            )
+        });
+    },
+
+    checkUsernameAvailability: function(username) {
+        return new Promise(function(resolve, reject) {
+            UserClient.findByUsername(
+                username,
+                function(err, user) {
+                    if (err) reject(err);
+                    else resolve(user != []);
+                }
+            )
+        });
     }
 }

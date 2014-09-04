@@ -19,8 +19,7 @@ exports.googleAuthReturn = passport.authenticate('google', {
 
 exports.googleAuthSuccess = function(req, res) {
     if (!req.user.username) {
-        //TODO: set username
-        //return res.redirect('/settings/username');
+        return res.redirect('/settings/username');
     }
     return res.redirect('/');
 }

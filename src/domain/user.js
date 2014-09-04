@@ -18,6 +18,18 @@ module.exports = {
 
     addGoogleUser: function(user, cb) {
         user.save(cb);
+    },
+
+    setUsername: function(username, userId, cb) {
+        console.log('mongoose');
+        mongoose.model('User').findByIdAndUpdate(
+            userId,
+            {$set: {username: username}}
+        ).exec(cb);
+    },
+
+    findByUsername: function(username, cb) {
+        mongoose.model('User').find({'username': username}).exec(cb);
     }
 };
 
