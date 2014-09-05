@@ -30,7 +30,7 @@ module.exports = {
                     if (err) reject(err);
                     else resolve(user);
                 }
-            )
+            );
         });
     },
 
@@ -43,7 +43,7 @@ module.exports = {
                     if (err) reject(err);
                     else resolve(user.username);
                 }
-            )
+            );
         });
     },
 
@@ -53,9 +53,9 @@ module.exports = {
                 username,
                 function(err, user) {
                     if (err) reject(err);
-                    else resolve(user != []);
+                    else resolve(user !== []);
                 }
-            )
+            );
         });
     }
-}
+};

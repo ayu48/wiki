@@ -33,7 +33,7 @@ exports.setUsername = function (req, res) {
                     function(username) {
                         res.send(username);
                     },
-                    function(err) {console.log(err)}
+                    function(err) {console.log(err);}
                 );
             } else {
                 res.send(400, "Username Not available :(");
@@ -41,9 +41,9 @@ exports.setUsername = function (req, res) {
         },
         function(err) {console.log(err);}
     );
-}
+};
 
-isValidUsername = function(username) {
+var isValidUsername = function(username) {
     var validName = username.match(/^[a-z0-9_-]{3,15}$/);
     return !!validName;
-}
+};

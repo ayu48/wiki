@@ -19,4 +19,4 @@ exports.userTop = function (req, res) {
             });
         }
     );
-}
+};

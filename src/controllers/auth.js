@@ -1,7 +1,6 @@
 var passport = require('passport');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var UserRepo = require('../domain/user-repo');
-var authorization = require('../../config/authorization');
 
 exports.login = function(req, res) {
     if (!req.isAuthenticated()) {
@@ -9,7 +8,7 @@ exports.login = function(req, res) {
     } else {
         return res.redirect('/');
     }
-}
+};
 
 exports.googleAuth = passport.authenticate('google');
 
@@ -22,7 +21,7 @@ exports.googleAuthSuccess = function(req, res) {
         return res.redirect('/settings/username');
     }
     return res.redirect('/');
-}
+};
 
 //TODO amend & hide
 passport.use(new GoogleStrategy({
@@ -34,7 +33,9 @@ passport.use(new GoogleStrategy({
     UserRepo.findUserByGoogleId(profile.id).then(
         function(user) {
             if(!user) {
-                this.addGoogleUser(profile);
+                addGoogleUser(profile, function(user) {
+                    done(null, user);
+                });
             }
             else {
                 done(null, user);
@@ -44,7 +45,7 @@ passport.use(new GoogleStrategy({
             console.log(err);
             done(err);
         }
-    )
+    );
 }));
 
 passport.serializeUser(function(user, done) {
@@ -56,9 +57,9 @@ passport.deserializeUser(function(user, done) {
 });
 
 //private
-addGoogleUser = function(profile) {
+var addGoogleUser = function(profile, cb) {
     UserRepo.addGoogleUser(profile).then(
-        function(user) {done(null, user);},
+        function(user) {cb(user);},
         function(err) {console.log(err);}
-    )
+    );
 };
