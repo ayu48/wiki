@@ -4,7 +4,7 @@
   "description": "personal wiki",
   "main": "web.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/gulp"
   },
   "repository": "https://github.com/blueteeth48/wiki.git",
   "author": "ayu",
@@ -30,7 +30,8 @@
     "npm": "1.4.x"
   },
   "devDependencies": {
-    "gulp": "~3.6.2",
-    "gulp-jshint": "~1.6.1"
+    "gulp": "~3.8.0",
+    "gulp-jshint": "~1.8.0",
+    "jshint-stylish": "^0.4.0"
   }
 }
