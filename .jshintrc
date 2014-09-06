@@ -13,5 +13,8 @@
     "newcap": false,
     "laxcomma": true,
 
-    "node": true
+    "node": true,
+
+    "predef": ["-Promise"]
+
 }
