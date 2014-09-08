@@ -20,7 +20,7 @@ exports.googleAuthSuccess = function(req, res) {
     if (!req.user.username) {
         return res.redirect('/settings/username');
     }
-    return res.redirect('/');
+    return res.redirect('/' + req.user.username);
 };
 
 //TODO amend & hide
