@@ -1,19 +1,24 @@
 .page-header {
-  margin-top: 0px; }
+  margin-top: 0px;
+}
 
 .well hr {
   background: slategrey;
   border: 0;
-  height: 1px; }
+  height: 1px;
+}
+
 
 .well.border {
   padding: 19px;
   border: 1px solid;
   border-color: slategrey;
-  background-color: transparent; }
+  background-color: transparent;
+}
 
 .space-10 {
-  padding-bottom: 10px; }
+  padding-bottom: 10px;
+}
 
 #login-form {
   position: fixed;
@@ -22,7 +27,8 @@
   width: 300px;
   height: auto;
   margin-top: -100px;
-  margin-left: -150px; }
+  margin-left: -150px;
+}
 
 #username-setting {
   position: fixed;
@@ -31,6 +37,5 @@
   width: 400px;
   height: auto;
   margin-top: -100px;
-  margin-left: -200px; }
-
-/*# sourceMappingURL=main.css.map */
+  margin-left: -200px;
+}
