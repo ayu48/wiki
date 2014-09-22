@@ -7,10 +7,11 @@
     </button>
     <a class="navbar-brand" href="/">WIKI</a>
   </div>
-  {{! FIXME erase when logged in }}
-  <div class="navbar-collapse collapse navbar-responsive-collapse">
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="/login">Login</a></li>
-    </ul>
-  </div>
+  {{#unless isLoggedIn}}
+    <div class="navbar-collapse collapse navbar-responsive-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/login">Login</a></li>
+      </ul>
+    </div>
+  {{/unless}}
 </div>

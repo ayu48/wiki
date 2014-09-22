@@ -5,6 +5,7 @@ exports.index = function (req, res) {
     PageRepo.getPageWithChildPages(req.params.id).then(
         function(result) {
             res.render('pages/page', {
+                isLoggedIn: req.isAuthenticated(),
                 page: result[0],
                 childPages: result[1]
             });
@@ -20,7 +21,10 @@ exports.newPage = function (req, res) {
 exports.editPage = function (req, res) {
     PageRepo.getPage(req.params.id).then(
         function(page) {
-            res.render('pages/edit', {page: page});
+            res.render('pages/edit', {
+                isLoggedIn: req.isAuthenticated(),
+                page: page
+            });
         },
         function (err) {console.log(err);}
     );

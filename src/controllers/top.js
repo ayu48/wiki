@@ -4,6 +4,7 @@ exports.index = function (req, res) {
     PageRepo.getAllPages().then(
         function(pages) {
             res.render('top', {
+                isLoggedIn: req.isAuthenticated(),
                 pages: pages
             });
         },
@@ -15,6 +16,7 @@ exports.userTop = function (req, res) {
     PageRepo.getAllPagesByUsername(req.params.username).then(
         function(pages) {
             res.render('top', {
+                isLoggedIn: req.isAuthenticated(),
                 pages: pages
             });
         }
