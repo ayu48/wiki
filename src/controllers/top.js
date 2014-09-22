@@ -5,6 +5,7 @@ exports.index = function (req, res) {
         function(pages) {
             res.render('top', {
                 isLoggedIn: req.isAuthenticated(),
+                showActionButtons: req.isAuthenticated(),
                 pages: pages
             });
         },
@@ -17,6 +18,7 @@ exports.userTop = function (req, res) {
         function(pages) {
             res.render('top', {
                 isLoggedIn: req.isAuthenticated(),
+                showActionButtons: req.isAuthenticated(),
                 pages: pages
             });
         }

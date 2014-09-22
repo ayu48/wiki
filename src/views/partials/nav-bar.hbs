@@ -14,4 +14,20 @@
       </ul>
     </div>
   {{/unless}}
+  {{#if showActionButtons}}
+    <div class="navbar-collapse collapse navbar-responsive-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a id="action-buttons" class="dropdown-toggle" data-toggle="dropdown">Edit <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="/page/add/{{page._id}}">New Page</a></li>
+            {{#if page._id}}
+              <li><a href="/page/edit/{{page._id}}">Edit</a></li>
+              <li><a page-id="{{page._id}}" class="js-delete-page">Delete</a></li>
+            {{/if}}
+          </ul>
+        </li>
+      </ul>
+    </div>
+  {{/if}}
 </div>

@@ -6,6 +6,7 @@ exports.index = function (req, res) {
         function(result) {
             res.render('pages/page', {
                 isLoggedIn: req.isAuthenticated(),
+                showActionButtons: req.isAuthenticated(),
                 page: result[0],
                 childPages: result[1]
             });
@@ -15,7 +16,9 @@ exports.index = function (req, res) {
 };
 
 exports.newPage = function (req, res) {
-    res.render('pages/edit');
+    res.render('pages/edit', {
+        isLoggedIn: req.isAuthenticated()
+    });
 };
 
 exports.editPage = function (req, res) {
