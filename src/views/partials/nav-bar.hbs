@@ -7,16 +7,16 @@
     </button>
     <a class="navbar-brand" href="/">WIKI</a>
   </div>
-  {{#unless isLoggedIn}}
-    <div class="navbar-collapse collapse navbar-responsive-collapse">
-      <ul class="nav navbar-nav navbar-right">
+  <div class="navbar-collapse collapse navbar-responsive-collapse">
+    <ul class="nav navbar-nav navbar-right">
+
+      {{#if username}}
+        <li><a href="/{{username}}">{{username}}</a></li>
+      {{else}}
         <li><a href="/login">Login</a></li>
-      </ul>
-    </div>
-  {{/unless}}
-  {{#if showActionButtons}}
-    <div class="navbar-collapse collapse navbar-responsive-collapse">
-      <ul class="nav navbar-nav navbar-right">
+      {{/if}}
+
+      {{#if showActionButtons}}
         <li class="dropdown">
           <a id="action-buttons" class="dropdown-toggle" data-toggle="dropdown">Edit <b class="caret"></b></a>
           <ul class="dropdown-menu">
@@ -27,7 +27,7 @@
             {{/if}}
           </ul>
         </li>
-      </ul>
-    </div>
-  {{/if}}
+      {{/if}}
+    </ul>
+  </div>
 </div>
