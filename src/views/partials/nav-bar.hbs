@@ -12,8 +12,6 @@
 
       {{#if username}}
         <li><a href="/{{username}}">{{username}}</a></li>
-      {{else}}
-        <li><a href="/login">Login</a></li>
       {{/if}}
 
       {{#if showActionButtons}}
@@ -28,6 +26,13 @@
           </ul>
         </li>
       {{/if}}
+
+      {{#if username}}
+        <li><a href="/logout">Logout</a></li>
+      {{else}}
+        <li><a href="/login">Login</a></li>
+      {{/if}}
+
     </ul>
   </div>
 </div>

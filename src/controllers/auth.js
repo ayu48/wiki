@@ -10,6 +10,11 @@ exports.login = function(req, res) {
     }
 };
 
+exports.logout = function(req, res) {
+    req.logout();
+    res.redirect('/');
+}
+
 exports.googleAuth = passport.authenticate('google');
 
 exports.googleAuthReturn = passport.authenticate('google', {

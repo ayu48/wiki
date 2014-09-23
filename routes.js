@@ -11,6 +11,7 @@ module.exports = function (app) {
     // Get
     app.get('/', topController.index);
     app.get('/login', authController.login);
+    app.get('/logout', authController.logout);
     app.get('/:username', topController.userTop);
     app.get('/settings/username', auth.requiresLogin, settingsController.username);
     app.get('/page/add', auth.requiresLogin, pageController.newPage);
