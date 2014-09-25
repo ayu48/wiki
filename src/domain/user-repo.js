@@ -1,6 +1,6 @@
 var Promise = require('promise');
 var UserFactory = require('./user-factory');
-var mongoose = require('mongoose')
+var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var userSchema = new Schema({
