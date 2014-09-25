@@ -1,12 +1,19 @@
 var Promise = require('promise');
-var UserClient = require('./user');
 var UserFactory = require('./user-factory');
+var mongoose = require('mongoose')
+var Schema = mongoose.Schema;
+
+var userSchema = new Schema({
+    username: {type: String, default: ''},
+    provider: { type: String, default: ''},
+    google: {}
+});
 
 module.exports = {
 
     findUserById: function(userId) {
         return new Promise(function(resolve, reject) {
-            UserClient.findUserById(userId, function(err, user) {
+            mongoose.model('User').findById(userId).exec(function(err, user) {
                 if (err) reject(err);
                 else resolve(user);
             });
@@ -15,7 +22,7 @@ module.exports = {
 
     findUserByGoogleId: function(id) {
         return new Promise(function(resolve, reject) {
-            UserClient.findUserByGoogleId(id, function(err, user) {
+            mongoose.model('User').findOne({ 'google.id': id}).exec(function(err, user) {
                 if (err) reject(err);
                 else resolve(user);
             });
@@ -24,22 +31,20 @@ module.exports = {
 
     addGoogleUser: function(googleProfile) {
         return new Promise(function(resolve, reject) {
-            UserClient.addGoogleUser(
-                UserFactory.createUserModelFromGoogleProfile(googleProfile),
-                function(err, user) {
-                    if (err) reject(err);
-                    else resolve(user);
-                }
-            );
+            var newUser = UserFactory.createUserModelFromGoogleProfile(googleProfile);
+            newUser.save(function(err, user) {
+                if (err) reject(err);
+                else resolve(user);
+            });
         });
     },
 
     setUsername: function(username, userId) {
         return new Promise(function(resolve, reject) {
-            UserClient.setUsername(
-                username,
+            mongoose.model('User').findByIdAndUpdate(
                 userId,
-                function(err, user) {
+                {$set: {username: username}}
+            ).exec(function(err, user) {
                     if (err) reject(err);
                     else resolve(user.username);
                 }
@@ -49,13 +54,12 @@ module.exports = {
 
     checkUsernameAvailability: function(username) {
         return new Promise(function(resolve, reject) {
-            UserClient.findByUsername(
-                username,
-                function(err, user) {
-                    if (err) reject(err);
-                    else resolve(user !== []);
-                }
-            );
+            mongoose.model('User').find({'username': username}).exec(function(err, user) {
+                if (err) reject(err);
+                else resolve(user !== []);
+            });
         });
     }
 };
+
+mongoose.model('User', userSchema);

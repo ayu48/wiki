@@ -1,4 +1,4 @@
-require('./page.js');
+require('./page-repo.js');
 var mongoose = require('mongoose');
 var Page = mongoose.model('Page');
 
