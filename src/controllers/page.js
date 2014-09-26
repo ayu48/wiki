@@ -1,5 +1,28 @@
 var marked = require('marked');
 var PageRepo = require('../domain/page-repo');
+var UserRepo = require('../domain/user-repo');
+
+exports.userMyPage = function (req, res) {
+    UserRepo.getUserMyPage(req.params.username).then(
+        function(mypage) {
+            if (mypage) {
+                PageRepo.getPageWithChildPages(mypage).then(
+                    function(result) {
+                        res.render('pages/page', {
+                            username: req.user ? req.user.username : null,
+                            showActionButtons: req.isAuthenticated(),
+                            page: result[0],
+                            childPages: result[1]
+                        });
+                    },
+                    function (err) {console.log(err);}
+                );
+            }
+            //else error page
+        },
+        function (err) {console.log(err);}
+    );
+}
 
 exports.index = function (req, res) {
     PageRepo.getPageWithChildPages(req.params.id).then(

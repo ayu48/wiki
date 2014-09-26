@@ -22,6 +22,15 @@ module.exports = {
         });
     },
 
+    getUserMyPage: function(username) {
+        return new Promise(function(resolve, reject) {
+            mongoose.model('User').findOne({ 'username': username}).exec(function(err, user) {
+                if (err) reject(err);
+                else resolve(user.mypage);
+            });
+        });
+    },
+
     addGoogleUser: function(googleProfile) {
         return new Promise(function(resolve, reject) {
             var newUser = UserFactory.createUserModelFromGoogleProfile(googleProfile);

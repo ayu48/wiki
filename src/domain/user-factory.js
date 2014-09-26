@@ -4,7 +4,8 @@ var Schema = mongoose.Schema;
 var userSchema = new Schema({
     username: {type: String, default: ''},
     provider: { type: String, default: ''},
-    google: {}
+    google: {},
+    mypage: {type: String}
 });
 
 var User = mongoose.model('User', userSchema);

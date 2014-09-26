@@ -13,6 +13,7 @@ exports.index = function (req, res) {
     );
 };
 
+/* ===TODO: keep for future use===
 exports.userTop = function (req, res) {
     PageRepo.getAllPagesByUsername(req.params.username).then(
         function(pages) {
@@ -24,3 +25,4 @@ exports.userTop = function (req, res) {
         }
     );
 };
+*/
