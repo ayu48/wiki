@@ -1,7 +1,6 @@
 var Promise = require('promise');
 var PageFactory = require('./page-factory');
 var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
 
 module.exports = {
     //TODO: erase?
