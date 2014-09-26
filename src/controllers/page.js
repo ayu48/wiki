@@ -22,7 +22,7 @@ exports.userMyPage = function (req, res) {
         },
         function (err) {console.log(err);}
     );
-}
+};
 
 exports.index = function (req, res) {
     PageRepo.getPageWithChildPages(req.params.id).then(
