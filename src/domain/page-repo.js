@@ -3,16 +3,6 @@ var PageFactory = require('./page-factory');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-// Page Schema
-var pageSchema = new Schema({
-    title: String,
-    author: String,
-    body: String,
-    mtime: Number,
-    ctime: Number,
-    parent_id: String
-});
-
 module.exports = {
     //TODO: erase?
     getPage: function(pageId) {
@@ -90,5 +80,3 @@ module.exports = {
         });
     }
 };
-
-mongoose.model('Page', pageSchema);

@@ -1,6 +1,13 @@
-require('./user-repo.js');
 var mongoose = require('mongoose');
-var User = mongoose.model('User');
+var Schema = mongoose.Schema;
+
+var userSchema = new Schema({
+    username: {type: String, default: ''},
+    provider: { type: String, default: ''},
+    google: {}
+});
+
+var User = mongoose.model('User', userSchema);
 
 module.exports = {
     createUserModelFromGoogleProfile: function(googleProfile) {

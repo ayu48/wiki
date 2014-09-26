@@ -1,13 +1,6 @@
 var Promise = require('promise');
 var UserFactory = require('./user-factory');
 var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
-
-var userSchema = new Schema({
-    username: {type: String, default: ''},
-    provider: { type: String, default: ''},
-    google: {}
-});
 
 module.exports = {
 
@@ -61,5 +54,3 @@ module.exports = {
         });
     }
 };
-
-mongoose.model('User', userSchema);
