@@ -1,15 +1,41 @@
 var PageRepo = require('../domain/page-repo');
+var UserRepo = require('../domain/user-repo');
+var Promise = require('promise');
 
 exports.index = function (req, res) {
-    PageRepo.getAllPages().then(
-        function(pages) {
+    var userReq = new Promise (function(resolve, reject) {
+        UserRepo.getAllUsers().then(
+            function(users) {
+                resolve(users);
+            },
+            function(err) {
+                console.log(err);
+                reject();
+            }
+        );
+    });
+
+    var pageReq = new Promise (function(resolve, reject) {
+        PageRepo.getAllPages().then(
+            function(pages) {
+                resolve(pages);
+            },
+            function(err) {
+                console.log(err);
+                reject();
+            }
+        );
+    });
+
+    new Promise.all([userReq, pageReq]).then(function(results) {
+            console.log(results[0]);
             res.render('top', {
                 username: req.user ? req.user.username : null,
                 showActionButtons: req.isAuthenticated(),
-                pages: pages
-            });
-        },
-        function(err) {console.log(err);}
+                users: results[0],
+                pages: results[1]
+            })
+        }
     );
 };
 
