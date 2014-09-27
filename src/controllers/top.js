@@ -28,13 +28,12 @@ exports.index = function (req, res) {
     });
 
     new Promise.all([userReq, pageReq]).then(function(results) {
-            console.log(results[0]);
             res.render('top', {
                 username: req.user ? req.user.username : null,
                 showActionButtons: req.isAuthenticated(),
                 users: results[0],
                 pages: results[1]
-            })
+            });
         }
     );
 };
