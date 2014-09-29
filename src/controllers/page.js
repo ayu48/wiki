@@ -9,7 +9,7 @@ exports.userMyPage = function (req, res) {
                 PageRepo.getPageWithChildPages(mypage).then(
                     function(result) {
                         res.render('pages/page', {
-                            username: req.user ? req.user.username : null,
+                            user: req.user ? req.user : null,
                             showActionButtons: req.isAuthenticated(),
                             page: result[0],
                             childPages: result[1]
@@ -28,7 +28,7 @@ exports.index = function (req, res) {
     PageRepo.getPageWithChildPages(req.params.id).then(
         function(result) {
             res.render('pages/page', {
-                username: req.user ? req.user.username : null,
+                user: req.user ? req.user : null,
                 showActionButtons: req.isAuthenticated(),
                 page: result[0],
                 childPages: result[1]
@@ -40,7 +40,7 @@ exports.index = function (req, res) {
 
 exports.newPage = function (req, res) {
     res.render('pages/edit', {
-        username: req.user ? req.user.username : null
+        user: req.user ? req.user.user : null
     });
 };
 
@@ -48,7 +48,7 @@ exports.editPage = function (req, res) {
     PageRepo.getPage(req.params.id).then(
         function(page) {
             res.render('pages/edit', {
-                username: req.user ? req.user.username : null,
+                user: req.user ? req.user : null,
                 page: page
             });
         },

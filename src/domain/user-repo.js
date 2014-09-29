@@ -66,15 +66,8 @@ module.exports = {
     getAllUsers: function() {
         return new Promise(function(resolve,reject) {
             mongoose.model('User').find().exec(function(err, users) {
-                var userCollection = [];
-                users.map(function(user) {
-                    userCollection.push({
-                        username: user.username,
-                        image: user.google.picture
-                    });
-                });
                 if (err) reject(err);
-                else resolve(userCollection);
+                else resolve(users);
             });
         });
     }

@@ -11,8 +11,8 @@
     <div class="navbar-collapse collapse navbar-responsive-collapse">
       <ul class="nav navbar-nav navbar-right">
 
-        {{#if username}}
-          <li><a href="/{{username}}">{{username}}</a></li>
+        {{#if user}}
+          <li><a href="/{{user.username}}">{{user.username}}</a></li>
         {{/if}}
 
         {{#if showActionButtons}}
@@ -28,7 +28,7 @@
           </li>
         {{/if}}
 
-        {{#if username}}
+        {{#if user}}
           <li><a href="/logout">Logout</a></li>
         {{else}}
           <li><a href="/login">Login</a></li>

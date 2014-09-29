@@ -29,7 +29,7 @@ exports.index = function (req, res) {
 
     new Promise.all([userReq, pageReq]).then(function(results) {
             res.render('top', {
-                username: req.user ? req.user.username : null,
+                user: req.user ? req.user : null,
                 showActionButtons: req.isAuthenticated(),
                 users: results[0],
                 pages: results[1]
