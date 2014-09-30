@@ -2,6 +2,8 @@
 
 var gulp = require('gulp');
 var jshint = require('gulp-jshint');
+var less = require('gulp-less');
+var minifyCSS = require('gulp-minify-css');
 
 gulp.task('lint', function() {
   return gulp.src(['./src/**/*.js', '*.js'])
@@ -10,4 +12,13 @@ gulp.task('lint', function() {
     .pipe(jshint.reporter('fail'));
 });
 
+// compile less files into compressed css
+gulp.task('build-less', function() {
+    return gulp.src('./public/less/bootstrap.less')
+        .pipe(less())
+        .pipe(minifyCSS({keepBreaks:false}))
+        .pipe(gulp.dest('./public/css'));
+});
+
 gulp.task('default', ['lint']);
+
