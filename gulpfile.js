@@ -20,5 +20,9 @@ gulp.task('build-less', function() {
         .pipe(gulp.dest('./public/css'));
 });
 
+ gulp.task('watch', function() {
+     gulp.watch(['./public/less/**/*.less'], ['build-less']);
+ });
+
 gulp.task('default', ['lint']);
 
