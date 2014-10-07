@@ -1,3 +1,4 @@
+var passport = require('passport');
 var UserRepo = require('../domain/user-repo');
 
 exports.username = function (req, res) {

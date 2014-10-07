@@ -10,7 +10,7 @@ exports.userMyPage = function (req, res) {
                     function(result) {
                         res.render('pages/page', {
                             user: req.user ? req.user : null,
-                            showActionButtons: req.isAuthenticated(),
+                            showActionButtons: req.isAuthenticated() && req.user.username == result[0].author,
                             page: result[0],
                             childPages: result[1]
                         });
@@ -29,7 +29,7 @@ exports.index = function (req, res) {
         function(result) {
             res.render('pages/page', {
                 user: req.user ? req.user : null,
-                showActionButtons: req.isAuthenticated(),
+                showActionButtons: req.isAuthenticated() && req.user.username == result[0].author,
                 page: result[0],
                 childPages: result[1]
             });
