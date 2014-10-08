@@ -12,7 +12,12 @@
       <ul class="nav navbar-nav navbar-right">
 
         {{#if user}}
-          <li><a href="/{{user.username}}">{{user.username}}</a></li>
+          <li>
+            <a href="/{{user.username}}">
+              <img src="{{user.google.picture}}"/>
+              {{user.username}}
+            </a>
+          </li>
         {{/if}}
 
         {{#if showActionButtons}}
