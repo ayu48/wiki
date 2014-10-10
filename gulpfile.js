@@ -4,6 +4,7 @@ var gulp = require('gulp');
 var jshint = require('gulp-jshint');
 var less = require('gulp-less');
 var minifyCSS = require('gulp-minify-css');
+var mocha = require('gulp-mocha');
 
 gulp.task('lint', function() {
   return gulp.src(['./src/**/*.js', '*.js'])
@@ -20,9 +21,14 @@ gulp.task('build-less', function() {
         .pipe(gulp.dest('./public/css'));
 });
 
- gulp.task('watch', function() {
-     gulp.watch(['./public/less/**/*.less'], ['build-less']);
- });
+gulp.task('watch', function() {
+    gulp.watch(['./public/less/**/*.less'], ['build-less']);
+});
+
+gulp.task('test', function() {
+    return gulp.src('test/**/*.js', {read:false})
+        .pipe(mocha({reporter: 'spec'}));
+});
 
 gulp.task('default', ['lint']);
 
