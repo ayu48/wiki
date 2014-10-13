@@ -1,4 +1,5 @@
 var UserRepo = require('../domain/user-repo');
+var PageRepo = require('../domain/page-repo');
 
 exports.username = function (req, res) {
     res.render('settings/username');
@@ -29,9 +30,12 @@ exports.setUsername = function (req, res) {
     UserRepo.checkUsernameAvailability(username).then(
         function(isAvailable) {
             if (isAvailable) {
+                PageRepo.createPage(username, username).then(
+                    function(page) {UserRepo.setUserMyPage(req.user._id, page._id);}
+                );
                 UserRepo.setUsername(username, req.user._id).then(
                     function(username) {
-                        res.send(username);
+                        res.redirect('/' + username);
                     },
                     function(err) {console.log(err);}
                 );

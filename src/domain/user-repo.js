@@ -70,5 +70,17 @@ module.exports = {
                 else resolve(users);
             });
         });
+    },
+
+    setUserMyPage: function(userId, pageId) {
+        return new Promise(function(resolve, reject) {
+            mongoose.model('User').findByIdAndUpdate(
+                userId,
+                {$set: {mypage: pageId}}
+            ).exec(function(err) {
+                    if (err) reject(err);
+                    else resolve();
+            });
+        });
     }
 };
