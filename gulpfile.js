@@ -30,5 +30,5 @@ gulp.task('test', function() {
         .pipe(mocha({reporter: 'spec'}));
 });
 
-gulp.task('default', ['lint']);
+gulp.task('default', ['lint', 'test']);
 
