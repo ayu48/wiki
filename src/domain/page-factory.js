@@ -15,12 +15,13 @@ var Page = mongoose.model('Page', pageSchema);
 
 module.exports = {
     createPageModel: function(title, author, body, parentId) {
+        var now = new Date().getTime();
         return new Page ({
             title: title,
             author: author,
             body: body,
-            mtime: new Date().getTime(),
-            ctime: new Date().getTime(),
+            mtime: now,
+            ctime: now,
             parent_id: parentId
         });
     }
