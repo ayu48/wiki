@@ -7,7 +7,7 @@ var minifyCSS = require('gulp-minify-css');
 var mocha = require('gulp-mocha');
 
 gulp.task('lint', function() {
-  return gulp.src(['./src/**/*.js', '*.js'])
+  return gulp.src(['./src/**/*.js', '*.js', './test/**/*.js'])
     .pipe(jshint())
     .pipe(jshint.reporter('jshint-stylish'))
     .pipe(jshint.reporter('fail'));
