@@ -3,7 +3,9 @@ var expect = require('chai').expect;
 var PageFactory = require('../../src/domain/page-factory');
 
 describe('domain', function() {
+
     describe('page-factory', function() {
+
         it('creates new page', function() {
             var page = PageFactory.createPageModel('Title', 'Author', 'Body Content', 'abc123');
 
@@ -15,5 +17,7 @@ describe('domain', function() {
             expect(page.mtime).to.be.number;
             expect(page.mtime).to.equal(page.ctime);
         });
+
     });
-})
+
+});
