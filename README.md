@@ -1,4 +1,5 @@
-wiki
-====
+#wiki
 
-place to keep all my notes for studies & projects
+My Studies & Notes 
+
+http://ayu-wiki.herokuapp.com/
