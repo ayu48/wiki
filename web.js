@@ -36,7 +36,7 @@ fs.readdirSync(models_path).forEach(function (file) {
 });
 
 // Routes
-require('./routes.js')(app);
+require('./src/routes.js')(app);
 
 var port = Number(process.env.PORT || 5000);
 app.listen(port, function() {

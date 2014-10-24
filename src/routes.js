@@ -1,10 +1,10 @@
 // Controllers
-var authController = require('./src/controllers/auth');
-var topController = require('./src/controllers/top');
-var pageController = require('./src/controllers/page');
-var settingsController = require('./src/controllers/settings');
+var authController = require('./controllers/auth');
+var topController = require('./controllers/top');
+var pageController = require('./controllers/page');
+var settingsController = require('./controllers/settings');
 // Authorization
-var auth = require('./config/authorization');
+var auth = require('./authorization');
 
 // Expose Routes
 module.exports = function (app) {
