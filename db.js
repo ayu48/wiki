@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 exports.connectMongoDB = function() {
-    mongoose.connect('mongodb://guest:guest@oceanic.mongohq.com:10034/app24336356', function(error) {
+    mongoose.connect(process.env.MONGOHQ_URI, function(error) {
         if (error) {
             console.log(error);
         } else {

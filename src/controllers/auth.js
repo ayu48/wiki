@@ -30,8 +30,8 @@ exports.googleAuthSuccess = function(req, res) {
 
 //TODO amend & hide
 passport.use(new GoogleStrategy({
-    clientID: '784299102008-eq65dau7dsjuo474ed18hpdo71tptc3h.apps.googleusercontent.com',
-    clientSecret: '_bvcIo2PMW2EBHrABAJxYo7z',
+    clientID: process.env.GOOG_CLIENT_ID,
+    clientSecret: process.env.GOOG_CLIENT_SECRET,
     callbackURL: '/auth/google/return',
     scope: 'profile'
 }, function(accessToken, refreshToken, profile, done) {
