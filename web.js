@@ -16,8 +16,7 @@ app.set('views', __dirname + '/src/views');
 app.set('view engine', 'hbs');
 app.use(logfmt.requestLogger());
 app.use(bodyParser());
-//FIXME
-app.use(session({secret: 'secret key'}));
+app.use(session({secret: process.env.SESSION_PASS}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(methodOverride());
