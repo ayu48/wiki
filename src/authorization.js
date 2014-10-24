@@ -4,4 +4,4 @@ exports.requiresLogin = function(req, res, next) {
     }
     //TODO error message
     res.redirect('/login');
-}
+};
