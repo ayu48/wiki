@@ -10,7 +10,7 @@
                 </div>
 
                 <!------- Edit Mode -------------->
-                <form id="edit-form" method="post" style="height:570px">
+                <form id="edit-form" method="post" style="height:auto">
                     <div class="form-group">
                       <input class="form-control" type="text" name="title" value="{{page.title}}" style="height:40px">
                     </div>
@@ -20,7 +20,7 @@
                 </form>
 
                 <!------- Preview Mode -------------->
-                <div id="preview-mode" style="display:none;height:570px">
+                <div id="preview-mode" style="display:none;height:auto">
                     <h1 id="edited-title">{{{page.title}}}</h1>
                     <div id="edited-body">{{#marked}}{{page.body}}{{/marked}}</div>
                 </div>
