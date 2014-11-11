@@ -32,6 +32,7 @@
         </div>
     </body>
     <script>
+    (function() {
         $(document).ready(function() {
             $('#preview-mode-btn').click(function(event) {
                 $('#preview-mode-btn').addClass('active');
@@ -68,6 +69,7 @@
                     console.log(error);
                 });
             }
-        });
+        })}
+    )();
     </script>
 </html>
