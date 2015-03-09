@@ -3,79 +3,71 @@ var PageFactory = require('./page-factory');
 var mongoose = require('mongoose');
 
 module.exports = {
-    //TODO: erase?
+
     getPage: function(pageId) {
-        return new Promise(function(resolve, reject) {
-            mongoose.model('Page').findById(pageId).exec(function(err, page) {
-                if (err) reject(err);
-                else resolve(page);
-            });
-        });
+
+        return mongoose.model('Page').findById(pageId).exec();
+
     },
 
     getPageWithChildPages: function(pageId) {
-        var getPageReq = new Promise(function(resolve, reject) {
-            mongoose.model('Page').findById(pageId).exec(function(err, page) {
-                if (err) reject(err);
-                else resolve(page);
-            });
-        });
-        var childPagesReq = new Promise(function(resolve, reject) {
-            mongoose.model('Page').find({'parent_id': pageId}).exec(function(err, pages) {
-                if (err) reject(err);
-                else resolve(pages);
-            });
-        });
-        return new Promise.all([getPageReq, childPagesReq]);
+
+        var getPageReq = mongoose.model('Page').findById(pageId).exec();
+
+        var childPagesReq = mongoose.model('Page').find({'parent_id': pageId}).exec();
+
+        return Promise.all([getPageReq, childPagesReq]);
+
     },
 
     getAllPages: function() {
-        return new Promise(function(resolve, reject) {
-            mongoose.model('Page').find().exec(function(err, pages){
-                if (err) reject(err);
-                else resolve(pages);
-            });
-        });
+
+        return mongoose.model('Page').find().exec();
+
     },
 
     getAllPagesByUsername: function(username) {
-        return new Promise(function(resolve, reject) {
-            mongoose.model('Page').find({'author': username}).exec(function(err, pages){
-                if (err) reject(err);
-                else resolve(pages);
-            });
-        });
+
+        return mongoose.model('Page').find({'author': username}).exec();
+
     },
 
     createPage: function(title, author, body, parentId) {
+
         return new Promise(function(resolve, reject) {
+
             var newPage = PageFactory.createPageModel(title, author, body, parentId);
+
+            // Model#save doesn't return a promise for the moment,
+            // but going to start returning a promise at the version 4.0
+            // see https://github.com/LearnBoost/mongoose/issues/1431
             newPage.save(function(err, page){
                 if (err) reject(err);
                 else resolve(page);
             });
+
         });
+
     },
 
     updatePage: function(pageId, title, body) {
-        return new Promise(function(resolve, reject) {
-            mongoose.model('Page').findByIdAndUpdate(
-                pageId,
-                {$set: {title: title, body: body, mtime: new Date().getTime()}},
-                function(err, page) {
-                    if (err) reject(err);
-                    else resolve(page);
-                }
-            );
-        });
+
+        return mongoose.model('Page').findByIdAndUpdate(pageId, {
+
+            $set: {
+                title: title,
+                body: body,
+                mtime: new Date().getTime()
+            }
+
+        }).exec();
+
     },
 
     deletePage: function(pageId) {
-        return new Promise(function(resolve, reject) {
-            mongoose.model('Page').findById(pageId).remove().exec(function(err) {
-                if (err) reject(err);
-                else resolve();
-            });
-        });
+
+        return mongoose.model('Page').findById(pageId).remove().exec();
+
     }
+
 };
