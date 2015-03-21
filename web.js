@@ -16,7 +16,15 @@ app.set('views', __dirname + '/src/views');
 app.set('view engine', 'hbs');
 app.use(logfmt.requestLogger());
 app.use(bodyParser());
-app.use(session({secret: process.env.SESSION_PASS}));
+app.use(session({
+    secret: process.env.SESSION_PASS,
+    cookie: {
+        path: '/',
+        httpOnly: true,
+        secure: false,
+        maxAge: 31 * 24 * 3600 * 1000 // 1 month
+    }
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(methodOverride());
